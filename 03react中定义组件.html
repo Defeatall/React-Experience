@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello react</title>
+</head>
+<body>
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <!-- 核心库 -->
+    <script type="text/javascript" src="./js/react.development.js"></script>
+    <!-- 允许react操作dom -->
+    <script type="text/javascript" src="./js/react-dom.development.js"></script>
+    <!-- 引入babel，将jsx转成js -->
+    <script type="text/javascript" src="./js/babel.min.js"></script>
+
+    <!-- 函数式组件 -->
+    <script type="text/babel">
+        function MyFunctionComponent() {
+            console.log(this) // 此处为undefined，因为babel开启了严格模式
+            return <h2>我是函数式组件</h2>
+        }v  
+        ReactDOM.render(<MyFunctionComponent />, document.getElementById('test1'))
+        /* 
+			执行了ReactDOM.render(<MyFunctionComponent/>.......之后，发生了什么？
+            1.React解析组件标签，找到了MyFunctionComponent组件。
+            2.发现组件是使用函数定义的，随后调用该函数，将返回的虚拟DOM转为真实DOM，随后呈现在页面中。
+		*/
+    </script>
+ 
+    <!-- 类式组件 -->
+    <script type="text/babel">
+        class MyClassComponent extends React.Component {
+            render(){
+                // render式放在MyClassComponent的原型对象上，供实例使用
+                // render中的this式MyClassComponent的实例对象
+                return <h2></h2>
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello react</title>
+</head>
+<body>
+    <div id="jsx"></div>
+    <div id="js"></div>
+    <!-- 核心库 -->
+    <script type="text/javascript" src="./js/react.development.js"></script>
+    <!-- 允许react操作dom -->
+    <script type="text/javascript" src="./js/react-dom.development.js"></script>
+    <!-- 引入babel，将jsx转成js -->
+    <script type="text/javascript" src="./js/babel.min.js"></script>
+
+    <!-- jsx创建虚拟dom -->
+    <script type="text/babel">
+        const JSXDOM = (
+            <h1>
+                <span>hello,jsx</span>
+            </h1>
+        )
+        ReactDOM.render(JSXDOM, document.getElementById('jsx'))
+        // 对比虚拟dom和真实dom
+        console.log(document.getElementById('jsx'))
+        console.log(JSXDOM)
+    </script>
+
+    <!-- js创建虚拟dom -->
+    <script type="text/babel">
+        const JSDOM = React.createElement('h1', {id: 'title'}, React.createElement('span', {}, 'hello,react'))
+        ReactDOM.render(JSDOM, document.getElementById('js'))
+    </script>
+</body>
+</html>
